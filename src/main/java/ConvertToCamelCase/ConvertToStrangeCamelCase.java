@@ -1,39 +1,67 @@
 package ConvertToCamelCase;
 
-import javafx.beans.binding.StringBinding;
-
 import java.util.Scanner;
 
 public class ConvertToStrangeCamelCase {
 
-
-    private static String converterVer1(){
-        int convertIndex = 0;
-
+    private static char[] convertScannerToCharArray() {
         Scanner scanner = new Scanner(System.in);
         String stringByUser = scanner.nextLine();
         char[] stringToCharArray = stringByUser.toCharArray();
-        StringBuilder newCamelCase = new StringBuilder();
+        return stringToCharArray;
+    }
 
-        for (int i = 0; i < stringToCharArray.length; i++) {
+    private static String converterVer1() {
+        int convertIndex = 0;
+
+        char[] convertToStrangeCamelCase = convertScannerToCharArray();
+        StringBuilder strangeCamelCase = new StringBuilder();
+
+        for (int i = 0; i < convertToStrangeCamelCase.length; i++) {
             convertIndex++;
             if (convertIndex % 2 == 1) {
-                newCamelCase.append(Character.toUpperCase(stringToCharArray[i]));
+                strangeCamelCase.append(Character.toUpperCase(convertToStrangeCamelCase[i]));
             }
             if (convertIndex % 2 == 0) {
-                newCamelCase.append(Character.toLowerCase(stringToCharArray[i]));
+                strangeCamelCase.append(Character.toLowerCase(convertToStrangeCamelCase[i]));
             }
-            if (stringToCharArray[i] == ' ') {
-                newCamelCase.append(stringToCharArray[i]);
+            if (convertToStrangeCamelCase[i] == ' ') {
+                strangeCamelCase.append(convertToStrangeCamelCase[i]);
                 convertIndex--;
             }
         }
-        return String.valueOf(newCamelCase);
+        return String.valueOf(strangeCamelCase);
+    }
+
+    private static void normalCamelCase() {
+        char[] convertToNormalCamelCase = convertScannerToCharArray();
+        StringBuilder normalCamelCase = new StringBuilder();
+
+        for (int i = 0; i < convertToNormalCamelCase.length; i++) {
+
+            char appendChar = 0;
+
+            if (convertToNormalCamelCase[i] == ' ') {
+                i++;
+                if (convertToNormalCamelCase[i] != ' ') {
+                    appendChar = Character.toUpperCase(convertToNormalCamelCase[i]);
+                    normalCamelCase.append(appendChar);
+                }
+            } else if (convertToNormalCamelCase[i] != ' ') {
+                appendChar = Character.toLowerCase(convertToNormalCamelCase[i]);
+                normalCamelCase.append(appendChar);
+            }
+
+        }
+
+        System.out.println(normalCamelCase);
     }
 
     public static void main(String[] args) {
 
-        System.out.println(converterVer1());
+//        System.out.println(converterVer1());
+
+        normalCamelCase();
 
     }
 
