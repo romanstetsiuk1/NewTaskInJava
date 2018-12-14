@@ -1,0 +1,4 @@
+﻿Here is the syntax of this method −
+Moj plik tekstowy
+To jest on
+Hallo moto!

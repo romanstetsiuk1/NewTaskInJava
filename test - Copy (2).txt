@@ -1,0 +1,3 @@
+﻿Moj plik tekstowy
+To jest on
+Hallo moto!

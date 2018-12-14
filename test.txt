@@ -1,0 +1,4 @@
+﻿In this tutorial, we will show you how to use Jackson 2.x to convert Java object to / from JSON.
+Moj plik tekstowy
+To jest on
+Hallo moto!
