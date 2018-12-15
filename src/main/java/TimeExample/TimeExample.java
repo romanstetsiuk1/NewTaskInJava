@@ -1,11 +1,9 @@
 package TimeExample;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 public class TimeExample {
 
@@ -77,6 +75,55 @@ public class TimeExample {
         String nowDateTimeAsString = nowDateTime.format(dtf);
         System.out.println("Date and time is String: " + nowDateTimeAsString);
 
+        /*
+        TIMESTAMP
+        info from: https://www.epochconverter.com/
+         */
+        long myTimestamp = 1544862554L;
+        LocalDateTime myLocalDateTime = LocalDateTime.ofInstant
+                (Instant.ofEpochSecond(myTimestamp), TimeZone.getDefault().toZoneId());
+        System.out.println(myLocalDateTime);
+
+//      TIME ZONE
+        TimeZone myTimeZone = TimeZone.getDefault();
+        System.out.println("My time zone is: " + myTimeZone);
+        System.out.println("Identyfikator strefy: " + myTimeZone.toZoneId());
+        System.out.println("Przesuniecie w stosunku do grintith w sekundach: " + myTimeZone.getRawOffset());
+
+        ZoneId zoneId = ZoneId.of("Europe/Paris");
+        System.out.println("W strefie czsowej " + zoneId + " przesuniecie stanowi: "
+                + zoneId.getRules().getOffset(Instant.EPOCH));
+
+        Set<String> allZonesId = ZoneId.getAvailableZoneIds();  //get all times zones
+        System.out.println(allZonesId);
+
+//        Task: wyswitl wszystkie zony czasowe wraz z przesunieciem w nich
+        for (String element : allZonesId) {
+            ZoneId tmpZone = ZoneId.of(element);
+            System.out.println("W strefie czasowej " + element + " przesuniecie stanowi: " +
+                    tmpZone.getRules().getOffset(Instant.EPOCH));
+        }
+
+//        Task: Sortowanie zon czasowych wraz z przesunieciem
+        Map<String, String> allZoneIdWithTime = new HashMap<>();
+        for (String timeZone : allZonesId) {
+            ZoneId tmpZone = ZoneId.of(timeZone);
+            allZoneIdWithTime.put(timeZone, String.valueOf(tmpZone.getRules().getOffset(Instant.EPOCH)));
+        }
+        System.out.println(sortByValue(allZoneIdWithTime));
+
+    }
+
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
     }
 
 }
