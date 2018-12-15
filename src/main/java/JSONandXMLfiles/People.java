@@ -1,11 +1,16 @@
 package JSONandXMLfiles;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @XmlRootElement
 public class People {
 
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "person")
     private List<Person> people;
 
     public void setPeople(List<Person> people) {

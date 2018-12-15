@@ -1,12 +1,16 @@
 {
   "people": [
     {
-      "name": "Person1",
-      "age": 25
+      "Person": {
+        "name": "Person1",
+        "age": 25
+      }
     },
     {
-      "name": "Person2",
-      "age": 29
+      "Person": {
+        "name": "Person2",
+        "age": 29
+      }
     }
   ]
 }
