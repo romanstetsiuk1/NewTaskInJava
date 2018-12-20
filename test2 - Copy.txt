@@ -1,7 +1,0 @@
-﻿For Jackson 2.x, declares jackson-databind, it will download its dependencies – jackson-core and jackson-annotations
-Line 1
-Line 2
-Boom-boom
-Line 1
-Line 2
-Boom-boom
